@@ -36,7 +36,7 @@ export function ProblemSidebar({
         className="search-input"
         value={query}
         onChange={(event) => onQueryChange(event.target.value)}
-        placeholder="title, tag, difficulty"
+        placeholder="Search title, tag, difficulty"
       />
 
       <div className="problem-count">
@@ -47,13 +47,18 @@ export function ProblemSidebar({
         {problems.map((problem) => (
           <button
             key={problem.slug}
-            className={`problem-list-item ${problem.slug === selectedSlug ? 'is-active' : ''}`}
+            className={`problem-list-item difficulty-${problem.difficulty.toLowerCase()} ${
+              problem.slug === selectedSlug ? 'is-active' : ''
+            }`}
             type="button"
             onClick={() => onProblemSelect(problem.slug)}
           >
             <span className="problem-title">{problem.title}</span>
-            <span className="problem-meta">
-              {problem.difficulty} · {problem.tags.join(', ')}
+            <span className="problem-meta" aria-label={`${problem.difficulty}, ${problem.tags.join(', ')}`}>
+              <span className="difficulty-dot" aria-hidden="true" />
+              <span>{problem.difficulty}</span>
+              <span aria-hidden="true">/</span>
+              <span>{problem.tags.join(', ')}</span>
             </span>
           </button>
         ))}

@@ -5,7 +5,7 @@ export function AppLogo() {
       <path
         d="M31 25 20 36 31 47"
         fill="none"
-        stroke="#0f766e"
+        stroke="currentColor"
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -13,7 +13,7 @@ export function AppLogo() {
       <path
         d="M41 25 52 36 41 47"
         fill="none"
-        stroke="#132238"
+        stroke="currentColor"
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -21,11 +21,11 @@ export function AppLogo() {
       <path
         d="M39 22 33 50"
         fill="none"
-        stroke="#132238"
+        stroke="currentColor"
         strokeWidth="4"
         strokeLinecap="round"
       />
-      <circle cx="52" cy="20" r="4" fill="#14b8a6" />
+      <circle cx="52" cy="20" r="4" fill="var(--accent)" />
     </svg>
   );
 }

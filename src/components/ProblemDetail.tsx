@@ -21,7 +21,10 @@ export function ProblemDetail({
     <section className="problem-detail" aria-label={`${problem.title} details`}>
       <header className="problem-header">
         <div>
-          <p className="eyebrow">{problem.difficulty}</p>
+          <p className="eyebrow">Selected Problem</p>
+          <p className={`eyebrow difficulty-label difficulty-${problem.difficulty.toLowerCase()}`}>
+            {problem.difficulty}
+          </p>
           <h2>{problem.title}</h2>
           <div className="tag-row">
             {problem.tags.map((tag) => (
