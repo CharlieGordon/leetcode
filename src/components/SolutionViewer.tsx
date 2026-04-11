@@ -36,7 +36,12 @@ export function SolutionViewer({
         <>
           <p className="solution-summary">{selectedSolution.summary}</p>
           <pre className="code-viewer">
-            <code>{highlightTypeScript(selectedSolution.source)}</code>
+            <code
+              className="language-typescript"
+              dangerouslySetInnerHTML={{
+                __html: highlightTypeScript(selectedSolution.source),
+              }}
+            />
           </pre>
         </>
       ) : (

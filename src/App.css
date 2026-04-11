@@ -250,21 +250,43 @@
   white-space: pre;
 }
 
-.token-comment {
+.code-viewer code {
+  display: block;
+  min-width: max-content;
+}
+
+.code-viewer .token.comment,
+.code-viewer .token.prolog,
+.code-viewer .token.doctype,
+.code-viewer .token.cdata {
   color: #8ea5c4;
 }
 
-.token-string {
+.code-viewer .token.string,
+.code-viewer .token.char,
+.code-viewer .token.attr-value,
+.code-viewer .token.regex {
   color: #99f6e4;
 }
 
-.token-number {
+.code-viewer .token.number,
+.code-viewer .token.boolean {
   color: #fca5a5;
 }
 
-.token-keyword {
+.code-viewer .token.keyword,
+.code-viewer .token.operator {
   color: #93c5fd;
   font-weight: 700;
+}
+
+.code-viewer .token.function,
+.code-viewer .token.class-name {
+  color: #fde68a;
+}
+
+.code-viewer .token.punctuation {
+  color: #cbd5e1;
 }
 
 .empty-state {
