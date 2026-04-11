@@ -1,3 +1,4 @@
+import { AppLogo } from './AppLogo';
 import type { ProblemCatalogItem } from '../types';
 
 type ProblemSidebarProps = {
@@ -20,10 +21,7 @@ export function ProblemSidebar({
   return (
     <aside className="problem-sidebar" aria-label="Problem browser">
       <div className="brand-block">
-        <img
-          src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=320&q=80"
-          alt="Code editor on a laptop"
-        />
+        <AppLogo />
         <div>
           <p className="eyebrow">Practice Library</p>
           <h1>LeetCode</h1>

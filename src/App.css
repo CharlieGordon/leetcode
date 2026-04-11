@@ -21,11 +21,10 @@
   align-items: center;
 }
 
-.brand-block img {
+.app-logo {
   width: 72px;
   height: 72px;
   border-radius: 8px;
-  object-fit: cover;
 }
 
 .eyebrow {
@@ -307,7 +306,7 @@
     grid-template-columns: 56px minmax(0, 1fr);
   }
 
-  .brand-block img {
+  .app-logo {
     width: 56px;
     height: 56px;
   }
