@@ -63,17 +63,19 @@ export function ProblemSidebar({
         aria-hidden={isCollapsed}
       >
         <div className="sidebar-browser-inner">
-          <label className="search-label" htmlFor="problem-search">
-            Search problems
-          </label>
-          <input
-            id="problem-search"
-            className="search-input"
-            value={query}
-            onChange={(event) => onQueryChange(event.target.value)}
-            placeholder="Search title, tag, difficulty"
-            tabIndex={isCollapsed ? -1 : undefined}
-          />
+          <div className="search-stack">
+            <label className="search-label" htmlFor="problem-search">
+              Search problems
+            </label>
+            <input
+              id="problem-search"
+              className="search-input"
+              value={query}
+              onChange={(event) => onQueryChange(event.target.value)}
+              placeholder="Search title, tag, difficulty"
+              tabIndex={isCollapsed ? -1 : undefined}
+            />
+          </div>
 
           <div className="problem-count">
             {problems.length} of {totalProblemCount} problems

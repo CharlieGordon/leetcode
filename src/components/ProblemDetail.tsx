@@ -20,11 +20,13 @@ export function ProblemDetail({
   return (
     <section className="problem-detail" aria-label={`${problem.title} details`}>
       <header className="problem-header">
-        <div>
-          <p className="eyebrow">Selected Problem</p>
-          <p className={`eyebrow difficulty-label difficulty-${problem.difficulty.toLowerCase()}`}>
-            {problem.difficulty}
-          </p>
+        <div className="problem-heading">
+          <div className="problem-overline">
+            <p className="eyebrow">Selected Problem</p>
+            <p className={`eyebrow difficulty-label difficulty-${problem.difficulty.toLowerCase()}`}>
+              {problem.difficulty}
+            </p>
+          </div>
           <h2>{problem.title}</h2>
           <div className="tag-row">
             {problem.tags.map((tag) => (
@@ -32,9 +34,11 @@ export function ProblemDetail({
             ))}
           </div>
         </div>
-        <a className="leetcode-link" href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
-          Open on LeetCode
-        </a>
+        <div className="problem-actions" aria-label="Problem actions">
+          <a className="leetcode-link" href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
+            Open on LeetCode
+          </a>
+        </div>
       </header>
 
       <div className="content-grid">

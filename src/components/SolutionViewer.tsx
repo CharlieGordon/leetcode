@@ -34,15 +34,24 @@ export function SolutionViewer({
 
       {selectedSolution ? (
         <>
-          <p className="solution-summary">{selectedSolution.summary}</p>
-          <pre className="code-viewer">
-            <code
-              className="language-typescript"
-              dangerouslySetInnerHTML={{
-                __html: highlightTypeScript(selectedSolution.source),
-              }}
-            />
-          </pre>
+          <div className="solution-brief">
+            <p className="solution-summary">{selectedSolution.summary}</p>
+            <span className="solution-language">TypeScript</span>
+          </div>
+          <div className="code-frame">
+            <div className="code-toolbar" aria-hidden="true">
+              <span>{selectedSolution.id}.ts</span>
+              <span>Executable</span>
+            </div>
+            <pre className="code-viewer">
+              <code
+                className="language-typescript"
+                dangerouslySetInnerHTML={{
+                  __html: highlightTypeScript(selectedSolution.source),
+                }}
+              />
+            </pre>
+          </div>
         </>
       ) : (
         <p className="empty-state">No solution source found.</p>
