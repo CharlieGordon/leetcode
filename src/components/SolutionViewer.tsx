@@ -36,12 +36,11 @@ export function SolutionViewer({
         <>
           <div className="solution-brief">
             <p className="solution-summary">{selectedSolution.summary}</p>
-            <span className="solution-language">TypeScript</span>
           </div>
           <div className="code-frame">
             <div className="code-toolbar" aria-hidden="true">
-              <span>{selectedSolution.id}.ts</span>
-              <span>Executable</span>
+              <span className="code-file-name">{selectedSolution.id}.ts</span>
+              <span className="code-language">TypeScript</span>
             </div>
             <pre className="code-viewer">
               <code
