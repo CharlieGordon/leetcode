@@ -21,16 +21,16 @@ export function ProblemDetail({
     <section className="problem-detail" aria-label={`${problem.title} details`}>
       <header className="problem-header">
         <div className="problem-heading">
-          <div className="problem-overline">
-            <p className="eyebrow">Selected Problem</p>
-            <p className={`eyebrow difficulty-label difficulty-${problem.difficulty.toLowerCase()}`}>
-              {problem.difficulty}
-            </p>
-          </div>
           <h2>{problem.title}</h2>
-          <div className="tag-row">
+          <div className="tag-row" aria-label="Problem metadata">
+            <span className={`difficulty-chip difficulty-${problem.difficulty.toLowerCase()}`}>
+              {problem.difficulty}
+            </span>
+            <span className="metadata-divider" aria-hidden="true" />
             {problem.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+              <span className="topic-tag" key={tag}>
+                {tag}
+              </span>
             ))}
           </div>
         </div>
