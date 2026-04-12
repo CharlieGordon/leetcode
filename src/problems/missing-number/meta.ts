@@ -8,9 +8,9 @@ const meta: ProblemMeta = {
   leetcodeUrl: 'https://leetcode.com/problems/missing-number/',
   solutions: [
     {
-      id: 'todo',
-      name: 'Empty Solution',
-      summary: 'Placeholder solution awaiting implementation.',
+      id: 'sorting',
+      name: 'Sorting',
+      summary: 'Sorts the numbers and returns the first gap in the sequence.',
     },
   ],
 };
