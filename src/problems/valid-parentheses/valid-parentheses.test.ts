@@ -10,21 +10,31 @@ const cases = [
   { input: '([)]', expected: false },
   { input: '{[]}', expected: true },
   { input: ']', expected: false },
+  { input: '(', expected: false },
+  { input: '[', expected: false },
+  { input: '{', expected: false },
+  { input: '}', expected: false },
   { input: '((', expected: false },
   { input: '(){}}{', expected: false },
+  { input: '([{}])', expected: true },
+  { input: '{[()()]}', expected: true },
+  { input: '(([]){})', expected: true },
+  { input: '(([]){})(', expected: false },
+  { input: '([{}]))', expected: false },
+  { input: '({[)]}', expected: false },
+  { input: '(((((((((())))))))))', expected: true },
 ];
 
 describe(meta.title, () => {
   for (const solution of meta.solutions) {
-    it(`${solution.name} documents the empty solution placeholder for every shared case`, () => {
+    it(`${solution.name} validates every shared case`, () => {
       const implementation = solutions[solution.id];
       expect(implementation, `${solution.id} is missing from the executable registry`).toBeDefined();
 
       for (const testCase of cases) {
-        expect(
-          () => implementation(testCase.input),
-          `${testCase.input} should eventually return ${testCase.expected}`,
-        ).toThrow('Not implemented');
+        expect(implementation(testCase.input), `${testCase.input} should be ${testCase.expected}`).toBe(
+          testCase.expected,
+        );
       }
     });
   }

@@ -1,7 +1,7 @@
-import { isValid as todo } from './todo';
+import { isValid as stack } from './stack';
 
 export type ValidParenthesesSolution = (s: string) => boolean;
 
 export const solutions: Record<string, ValidParenthesesSolution> = {
-  todo,
+  stack,
 };

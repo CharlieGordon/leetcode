@@ -8,9 +8,9 @@ const meta: ProblemMeta = {
   leetcodeUrl: 'https://leetcode.com/problems/valid-parentheses/',
   solutions: [
     {
-      id: 'todo',
-      name: 'Empty Solution',
-      summary: 'Placeholder solution awaiting implementation.',
+      id: 'stack',
+      name: 'Stack',
+      summary: 'Tracks opening brackets and matches each closing bracket against the latest opener.',
     },
   ],
 };
