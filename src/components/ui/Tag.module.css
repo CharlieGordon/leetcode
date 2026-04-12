@@ -1,0 +1,51 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 251, 0.58);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.topic {
+  border-left: 2px solid rgba(200, 70, 52, 0.58);
+}
+
+.difficultyEasy,
+.difficultyMedium,
+.difficultyHard {
+  gap: 7px;
+  padding: 4px 9px;
+  border-color: rgba(11, 116, 87, 0.3);
+  background: rgba(216, 238, 228, 0.78);
+  color: var(--difficulty-color, var(--accent));
+  box-shadow: inset 0 -1px 0 rgba(11, 116, 87, 0.14);
+}
+
+.difficultyEasy::before,
+.difficultyMedium::before,
+.difficultyHard::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.86;
+  content: "";
+}
+
+.difficultyEasy {
+  --difficulty-color: var(--easy);
+}
+
+.difficultyMedium {
+  --difficulty-color: var(--medium);
+}
+
+.difficultyHard {
+  --difficulty-color: var(--hard);
+}

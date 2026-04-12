@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import { ProblemDetail } from './components/ProblemDetail';
 import { ProblemSidebar } from './components/ProblemSidebar';
+import { classNames } from './lib/classNames';
 import { loadProblemCatalog } from './lib/catalog';
 
 const catalog = loadProblemCatalog();
@@ -61,7 +62,7 @@ function App() {
   }
 
   return (
-    <main className={`app-shell ${isSidebarCollapsed ? 'is-sidebar-collapsed' : ''}`}>
+    <main className={classNames(styles.appShell, isSidebarCollapsed && styles.sidebarCollapsed)}>
       <ProblemSidebar
         problems={filteredProblems}
         totalProblemCount={catalog.length}

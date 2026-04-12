@@ -1,5 +1,10 @@
 import { AppLogo } from './AppLogo';
-import type { ProblemCatalogItem } from '../types';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Title } from './ui/Title';
+import { classNames } from '../lib/classNames';
+import type { Difficulty, ProblemCatalogItem } from '../types';
+import styles from './ProblemSidebar.module.css';
 
 type ProblemSidebarProps = {
   problems: ProblemCatalogItem[];
@@ -10,6 +15,12 @@ type ProblemSidebarProps = {
   onQueryChange: (query: string) => void;
   onProblemSelect: (slug: string) => void;
   onToggleCollapsed: () => void;
+};
+
+const difficultyClassByDifficulty: Record<Difficulty, string> = {
+  Easy: styles.difficultyEasy,
+  Medium: styles.difficultyMedium,
+  Hard: styles.difficultyHard,
 };
 
 export function ProblemSidebar({
@@ -26,75 +37,73 @@ export function ProblemSidebar({
   const toggleLabel = isCollapsed ? 'Open problem browser' : 'Collapse problem browser';
 
   return (
-    <aside className={`problem-sidebar ${isCollapsed ? 'is-collapsed' : ''}`} aria-label="Problem browser">
-      <div className="sidebar-topline">
-        <div className="brand-block">
-          <AppLogo />
-          <div className="brand-copy">
-            <p className="eyebrow">Practice Library</p>
-            <h1>LeetCode</h1>
+    <aside className={classNames(styles.sidebar, isCollapsed && styles.collapsed)} aria-label="Problem browser">
+      <div className={styles.topline}>
+        <div className={styles.brandBlock}>
+          <AppLogo className={styles.logo} />
+          <div className={styles.brandCopy}>
+            <p className={styles.eyebrow}>Practice Library</p>
+            <Title as="h1" variant="brand">LeetCode</Title>
           </div>
         </div>
 
-        <button
-          className="sidebar-toggle"
-          type="button"
+        <Button
+          variant="sidebarToggle"
+          iconOnly
+          className={styles.toggle}
           aria-controls={browserPanelId}
           aria-expanded={!isCollapsed}
           aria-label={toggleLabel}
           onClick={onToggleCollapsed}
         >
           <svg
-            className="sidebar-toggle-icon"
+            className={styles.toggleIcon}
             viewBox="0 0 24 24"
             aria-hidden="true"
             focusable="false"
           >
-            <path className="sidebar-toggle-grip" d="M8 7.5v9" />
-            <path className="sidebar-toggle-grip" d="M11 7.5v9" />
-            <path className="sidebar-toggle-arrow" d="M16 8.5 12.5 12 16 15.5" />
+            <path className={styles.toggleGrip} d="M8 7.5v9" />
+            <path className={styles.toggleGrip} d="M11 7.5v9" />
+            <path className={styles.toggleArrow} d="M16 8.5 12.5 12 16 15.5" />
           </svg>
-        </button>
+        </Button>
       </div>
 
       <div
         id={browserPanelId}
-        className={`sidebar-browser ${isCollapsed ? 'is-collapsed' : ''}`}
+        className={styles.browser}
         aria-hidden={isCollapsed}
       >
-        <div className="sidebar-browser-inner">
-          <div className="search-stack">
-            <label className="search-label" htmlFor="problem-search">
-              Search problems
-            </label>
-            <input
-              id="problem-search"
-              className="search-input"
-              value={query}
-              onChange={(event) => onQueryChange(event.target.value)}
-              placeholder="Search title, tag, difficulty"
-              tabIndex={isCollapsed ? -1 : undefined}
-            />
-          </div>
+        <div className={styles.browserInner}>
+          <Input
+            id="problem-search"
+            label="Search problems"
+            value={query}
+            onChange={(event) => onQueryChange(event.target.value)}
+            placeholder="Search title, tag, difficulty"
+            tabIndex={isCollapsed ? -1 : undefined}
+          />
 
-          <div className="problem-count">
+          <div className={styles.problemCount}>
             {problems.length} of {totalProblemCount} problems
           </div>
 
-          <nav className="problem-list" aria-label="Problems">
+          <nav className={styles.list} aria-label="Problems">
             {problems.map((problem) => (
               <button
                 key={problem.slug}
-                className={`problem-list-item difficulty-${problem.difficulty.toLowerCase()} ${
-                  problem.slug === selectedSlug ? 'is-active' : ''
-                }`}
+                className={classNames(
+                  styles.listItem,
+                  difficultyClassByDifficulty[problem.difficulty],
+                  problem.slug === selectedSlug && styles.active,
+                )}
                 type="button"
                 tabIndex={isCollapsed ? -1 : undefined}
                 onClick={() => onProblemSelect(problem.slug)}
               >
-                <span className="problem-title">{problem.title}</span>
-                <span className="problem-meta" aria-label={`${problem.difficulty}, ${problem.tags.join(', ')}`}>
-                  <span className="difficulty-dot" aria-hidden="true" />
+                <span className={styles.problemTitle}>{problem.title}</span>
+                <span className={styles.problemMeta} aria-label={`${problem.difficulty}, ${problem.tags.join(', ')}`}>
+                  <span className={styles.difficultyDot} aria-hidden="true" />
                   <span>{problem.difficulty}</span>
                   <span aria-hidden="true">/</span>
                   <span>{problem.tags.join(', ')}</span>

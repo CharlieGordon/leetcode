@@ -1,5 +1,7 @@
 import { highlightTypeScript } from '../lib/highlight';
 import type { SolutionSource } from '../types';
+import { Tabs } from './ui/Tabs';
+import styles from './SolutionViewer.module.css';
 
 type SolutionViewerProps = {
   solutions: SolutionSource[];
@@ -16,33 +18,25 @@ export function SolutionViewer({
     solutions.find((solution) => solution.id === selectedSolutionId) ?? solutions[0];
 
   return (
-    <section className="solution-panel" aria-label="Solutions">
-      <div className="solution-tabs" role="tablist" aria-label="Solution options">
-        {solutions.map((solution) => (
-          <button
-            key={solution.id}
-            className={solution.id === selectedSolution?.id ? 'is-active' : ''}
-            type="button"
-            role="tab"
-            aria-selected={solution.id === selectedSolution?.id}
-            onClick={() => onSolutionSelect(solution.id)}
-          >
-            {solution.name}
-          </button>
-        ))}
-      </div>
+    <section className={styles.panel} aria-label="Solutions">
+      <Tabs
+        items={solutions.map((solution) => ({ id: solution.id, label: solution.name }))}
+        selectedId={selectedSolution?.id}
+        onSelect={onSolutionSelect}
+        ariaLabel="Solution options"
+      />
 
       {selectedSolution ? (
         <>
-          <div className="solution-brief">
-            <p className="solution-summary">{selectedSolution.summary}</p>
+          <div className={styles.brief}>
+            <p className={styles.summary}>{selectedSolution.summary}</p>
           </div>
-          <div className="code-frame">
-            <div className="code-toolbar" aria-hidden="true">
-              <span className="code-file-name">{selectedSolution.id}.ts</span>
-              <span className="code-language">TypeScript</span>
+          <div className={styles.codeFrame}>
+            <div className={styles.codeToolbar} aria-hidden="true">
+              <span className={styles.codeFileName}>{selectedSolution.id}.ts</span>
+              <span className={styles.codeLanguage}>TypeScript</span>
             </div>
-            <pre className="code-viewer">
+            <pre className={styles.codeViewer}>
               <code
                 className="language-typescript"
                 dangerouslySetInnerHTML={{
@@ -53,7 +47,7 @@ export function SolutionViewer({
           </div>
         </>
       ) : (
-        <p className="empty-state">No solution source found.</p>
+        <p className={styles.emptyState}>No solution source found.</p>
       )}
     </section>
   );

@@ -1,6 +1,18 @@
-export function AppLogo() {
+import { classNames } from '../lib/classNames';
+import styles from './AppLogo.module.css';
+
+type AppLogoProps = {
+  className?: string;
+};
+
+export function AppLogo({ className }: AppLogoProps) {
   return (
-    <svg className="app-logo" viewBox="0 0 72 72" role="img" aria-labelledby="app-logo-title">
+    <svg
+      className={classNames(styles.logo, className)}
+      viewBox="0 0 72 72"
+      role="img"
+      aria-labelledby="app-logo-title"
+    >
       <title id="app-logo-title">LeetCode practice logo</title>
       <path
         d="M31 25 20 36 31 47"

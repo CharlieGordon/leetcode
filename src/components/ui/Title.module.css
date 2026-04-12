@@ -1,0 +1,44 @@
+.title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+.brand {
+  font-size: 2.05rem;
+  line-height: 0.9;
+}
+
+.problem {
+  max-width: 850px;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 0.94;
+  text-shadow:
+    0.026em 0.026em 0 rgba(11, 116, 87, 0.08),
+    -0.018em 0 0 rgba(200, 70, 52, 0.06);
+}
+
+@media (max-width: 980px) {
+  .problem {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .problem {
+    font-size: 3.35rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand {
+    font-size: 1.74rem;
+  }
+
+  .problem {
+    font-size: 2.65rem;
+  }
+}

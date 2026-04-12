@@ -1,0 +1,35 @@
+.stack {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 13px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 251, 0.72);
+  color: var(--ink);
+  outline: none;
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.input::placeholder {
+  color: var(--muted-light);
+}
+
+.input:focus {
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--accent-soft), 0 0 0 4px var(--focus-ring);
+  transform: translate(-2px, -2px);
+}

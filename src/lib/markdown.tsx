@@ -96,7 +96,11 @@ function renderInline(text: string): ReactNode[] {
   return nodes;
 }
 
-export function renderMarkdown(markdown: string): ReactNode[] {
+type RenderMarkdownOptions = {
+  codeClassName?: string;
+};
+
+export function renderMarkdown(markdown: string, options: RenderMarkdownOptions = {}): ReactNode[] {
   return parseMarkdown(markdown).map((block, index) => {
     const key = `${block.type}-${index}`;
 
@@ -130,7 +134,7 @@ export function renderMarkdown(markdown: string): ReactNode[] {
         );
       case 'code':
         return (
-          <pre key={key} className="markdown-code" data-language={block.language}>
+          <pre key={key} className={options.codeClassName} data-language={block.language}>
             <code>{block.code}</code>
           </pre>
         );

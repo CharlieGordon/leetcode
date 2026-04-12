@@ -1,0 +1,15 @@
+.logo {
+  width: 48px;
+  height: 48px;
+  padding: 5px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, var(--surface), var(--accent-soft));
+  box-shadow: 4px 4px 0 rgba(20, 22, 16, 0.09);
+  transition:
+    height var(--sidebar-motion-duration) var(--sidebar-motion-ease),
+    transform var(--sidebar-motion-duration) var(--sidebar-motion-ease),
+    width var(--sidebar-motion-duration) var(--sidebar-motion-ease);
+}
