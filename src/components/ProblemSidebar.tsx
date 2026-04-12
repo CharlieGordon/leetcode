@@ -78,6 +78,7 @@ export function ProblemSidebar({
           <Input
             id="problem-search"
             label="Search problems"
+            containerClassName={styles.search}
             value={query}
             onChange={(event) => onQueryChange(event.target.value)}
             placeholder="Search title, tag, difficulty"

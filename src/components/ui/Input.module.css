@@ -20,6 +20,7 @@
   outline: none;
   transition:
     background 140ms ease,
+    border-color 140ms ease,
     box-shadow 140ms ease,
     transform 140ms ease;
 }
@@ -28,8 +29,14 @@
   color: var(--muted-light);
 }
 
-.input:focus {
+.input:hover {
+  box-shadow: 3px 3px 0 rgba(20, 22, 16, 0.12);
+}
+
+.input:focus,
+.input:active {
+  border-color: var(--rule-strong);
   background: var(--surface);
-  box-shadow: 4px 4px 0 var(--accent-soft), 0 0 0 4px var(--focus-ring);
-  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
 }

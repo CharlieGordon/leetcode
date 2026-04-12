@@ -40,13 +40,13 @@
 
 .sidebarToggle:hover {
   background: var(--accent-soft);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
   color: var(--ink);
   transform: translate3d(-2px, -2px, 0);
 }
 
 .sidebarToggle:active {
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
   transform: translate3d(-1px, -1px, 0);
 }
 
@@ -117,7 +117,7 @@
 
 .external:hover {
   background: var(--accent-soft);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
   transform: translate(-2px, -2px);
 }
 
