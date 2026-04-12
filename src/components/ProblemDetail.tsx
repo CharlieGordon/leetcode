@@ -28,9 +28,11 @@ export function ProblemDetail({
           <Title as="h2" variant="problem">{problem.title}</Title>
           <div className={styles.metaRow}>
             <TagList difficulty={problem.difficulty} tags={problem.tags} aria-label="Problem metadata" />
-            <LinkButton href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
-              Open on LeetCode
-            </LinkButton>
+            {problem.leetcodeUrl && (
+              <LinkButton href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
+                Open on LeetCode
+              </LinkButton>
+            )}
           </div>
         </div>
       </header>

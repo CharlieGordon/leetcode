@@ -11,7 +11,7 @@ export type ProblemMeta = {
   slug: string;
   difficulty: Difficulty;
   tags: string[];
-  leetcodeUrl: string;
+  leetcodeUrl?: string;
   solutions: SolutionMeta[];
 };
 
