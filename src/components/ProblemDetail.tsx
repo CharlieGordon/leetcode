@@ -26,12 +26,12 @@ export function ProblemDetail({
       <header className={styles.header}>
         <div className={styles.heading}>
           <Title as="h2" variant="problem">{problem.title}</Title>
-          <TagList difficulty={problem.difficulty} tags={problem.tags} aria-label="Problem metadata" />
-        </div>
-        <div className={styles.actions} aria-label="Problem actions">
-          <LinkButton href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
-            Open on LeetCode
-          </LinkButton>
+          <div className={styles.metaRow}>
+            <TagList difficulty={problem.difficulty} tags={problem.tags} aria-label="Problem metadata" />
+            <LinkButton href={problem.leetcodeUrl} target="_blank" rel="noreferrer">
+              Open on LeetCode
+            </LinkButton>
+          </div>
         </div>
       </header>
 
