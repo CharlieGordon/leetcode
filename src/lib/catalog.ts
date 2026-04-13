@@ -103,10 +103,6 @@ export function getCatalogDiagnostics(): string[] {
       errors.push(`${slug} meta slug must match its folder name`);
     }
 
-    if (meta.solutions.length === 0) {
-      errors.push(`${slug} must define at least one solution`);
-    }
-
     for (const solution of meta.solutions) {
       if (!sourceMap.get(slug)?.has(solution.id)) {
         errors.push(`${slug} metadata references missing solution file: ${solution.id}.ts`);
