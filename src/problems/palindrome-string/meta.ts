@@ -12,6 +12,11 @@ const meta: ProblemMeta = {
       name: 'Two Pointer',
       summary: 'Compares matching characters from the beginning and end of the string.',
     },
+    {
+      id: 'normalized-two-pointer',
+      name: 'Normalized Two Pointer',
+      summary: 'Normalizes casing and punctuation before comparing characters from both ends.',
+    },
   ],
 };
 
