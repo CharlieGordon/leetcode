@@ -11,6 +11,11 @@ const meta: ProblemMeta = {
       name: 'Iterative',
       summary: 'Multiplies values from n down to 2 using a running product.',
     },
+    {
+      id: 'recursive',
+      name: 'Recursive',
+      summary: 'Uses n multiplied by factorial(n - 1) until reaching the base case.',
+    },
   ],
 };
 
