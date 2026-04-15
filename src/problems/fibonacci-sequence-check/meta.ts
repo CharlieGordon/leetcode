@@ -7,9 +7,9 @@ const meta: ProblemMeta = {
   tags: ['Math', 'Number Theory'],
   solutions: [
     {
-      id: 'empty',
-      name: 'Empty Solution',
-      summary: 'Placeholder implementation for practicing the Fibonacci membership check.',
+      id: 'iterative',
+      name: 'Iterative Sequence Check',
+      summary: 'Walks the Fibonacci sequence until it reaches or passes the input.',
     },
   ],
 };

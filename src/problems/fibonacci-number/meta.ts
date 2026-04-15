@@ -4,7 +4,7 @@ const meta: ProblemMeta = {
   title: 'Fibonacci Number',
   slug: 'fibonacci-number',
   difficulty: 'Easy',
-  tags: ['Math', 'Dynamic Programming', 'Recursion'],
+  tags: ['Math', 'Dynamic', 'Recursion'],
   leetcodeUrl: 'https://leetcode.com/problems/fibonacci-number/',
   solutions: [
     {
