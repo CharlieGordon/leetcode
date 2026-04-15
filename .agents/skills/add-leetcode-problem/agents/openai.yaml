@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add LeetCode Problem"
+  short_description: "Scaffold catalog-ready LeetCode problems"
+  default_prompt: "Use $add-leetcode-problem to add a new problem from these pasted details."
