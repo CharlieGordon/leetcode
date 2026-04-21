@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add AI Solution Overview"
+  short_description: "Create per-solution overview markdown"
+  default_prompt: "Use $add-ai-solution-overview to add an AI overview for this problem slug and solution id."

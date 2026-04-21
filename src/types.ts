@@ -17,6 +17,7 @@ export type ProblemMeta = {
 
 export type SolutionSource = SolutionMeta & {
   source: string;
+  overviewMarkdown?: string;
 };
 
 export type ProblemCatalogItem = ProblemMeta & {

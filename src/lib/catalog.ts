@@ -17,6 +17,12 @@ const solutionFiles = import.meta.glob('../problems/*/solutions/*.ts', {
   import: 'default',
 }) as Record<string, string>;
 
+const overviewFiles = import.meta.glob('../problems/*/solutions/*.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+}) as Record<string, string>;
+
 const testFiles = import.meta.glob('../problems/*/*.test.ts', {
   eager: true,
   query: '?raw',
@@ -25,6 +31,15 @@ const testFiles = import.meta.glob('../problems/*/*.test.ts', {
 
 const problemSlugPattern = /\.\.\/problems\/([^/]+)\//;
 const solutionFilePattern = /\.\.\/problems\/([^/]+)\/solutions\/([^/]+)\.ts$/;
+const overviewFilePattern = /\.\.\/problems\/([^/]+)\/solutions\/([^/]+)\.md$/;
+
+type CatalogAssetMaps = {
+  descriptions: Record<string, string>;
+  metadata: Record<string, ProblemMeta>;
+  solutionFiles: Record<string, string>;
+  overviewFiles: Record<string, string>;
+  testFiles: Record<string, string>;
+};
 
 function getProblemSlug(path: string): string {
   const match = problemSlugPattern.exec(path);
@@ -40,11 +55,14 @@ function normalizeSource(source: string): string {
   return source.trimEnd();
 }
 
-function buildSolutionSourceMap(): Map<string, Map<string, string>> {
+function buildSolutionAssetMap(
+  files: Record<string, string>,
+  pattern: RegExp,
+): Map<string, Map<string, string>> {
   const byProblem = new Map<string, Map<string, string>>();
 
-  for (const [path, source] of Object.entries(solutionFiles)) {
-    const match = solutionFilePattern.exec(path);
+  for (const [path, source] of Object.entries(files)) {
+    const match = pattern.exec(path);
 
     if (!match || match[2] === 'index') {
       continue;
@@ -59,17 +77,25 @@ function buildSolutionSourceMap(): Map<string, Map<string, string>> {
   return byProblem;
 }
 
-export function loadProblemCatalog(): ProblemCatalogItem[] {
-  const solutionSourceMap = buildSolutionSourceMap();
+export function buildProblemCatalog({
+  descriptions,
+  metadata,
+  solutionFiles,
+  overviewFiles,
+}: Omit<CatalogAssetMaps, 'testFiles'>): ProblemCatalogItem[] {
+  const solutionSourceMap = buildSolutionAssetMap(solutionFiles, solutionFilePattern);
+  const overviewSourceMap = buildSolutionAssetMap(overviewFiles, overviewFilePattern);
 
   return Object.entries(metadata)
     .map(([path, meta]) => {
       const slug = getProblemSlug(path);
       const description = descriptions[`../problems/${slug}/problem.md`] ?? '';
       const sourcesForProblem = solutionSourceMap.get(slug) ?? new Map<string, string>();
+      const overviewsForProblem = overviewSourceMap.get(slug) ?? new Map<string, string>();
       const solutionSources: SolutionSource[] = meta.solutions.map((solution) => ({
         ...solution,
         source: sourcesForProblem.get(solution.id) ?? '',
+        overviewMarkdown: overviewsForProblem.get(solution.id),
       }));
 
       return {
@@ -81,12 +107,28 @@ export function loadProblemCatalog(): ProblemCatalogItem[] {
     .sort((a, b) => a.title.localeCompare(b.title));
 }
 
-export function getCatalogDiagnostics(): string[] {
+export function loadProblemCatalog(): ProblemCatalogItem[] {
+  return buildProblemCatalog({
+    descriptions,
+    metadata,
+    solutionFiles,
+    overviewFiles,
+  });
+}
+
+export function getCatalogDiagnosticsForAssets({
+  descriptions,
+  metadata,
+  solutionFiles,
+  overviewFiles,
+  testFiles,
+}: CatalogAssetMaps): string[] {
   const errors: string[] = [];
   const metaSlugs = new Set(Object.keys(metadata).map(getProblemSlug));
   const descriptionSlugs = new Set(Object.keys(descriptions).map(getProblemSlug));
   const testSlugs = new Set(Object.keys(testFiles).map(getProblemSlug));
-  const sourceMap = buildSolutionSourceMap();
+  const sourceMap = buildSolutionAssetMap(solutionFiles, solutionFilePattern);
+  const overviewMap = buildSolutionAssetMap(overviewFiles, overviewFilePattern);
 
   for (const slug of metaSlugs) {
     const meta = metadata[`../problems/${slug}/meta.ts`];
@@ -116,5 +158,28 @@ export function getCatalogDiagnostics(): string[] {
     }
   }
 
+  for (const [slug, overviewsForProblem] of overviewMap) {
+    const meta = metadata[`../problems/${slug}/meta.ts`];
+
+    for (const solutionId of overviewsForProblem.keys()) {
+      const hasRegisteredSolution = meta?.solutions.some((solution) => solution.id === solutionId);
+      const hasSolutionSource = sourceMap.get(slug)?.has(solutionId) ?? false;
+
+      if (!hasRegisteredSolution || !hasSolutionSource) {
+        errors.push(`${slug} has overview markdown without a matching registered solution: ${solutionId}.md`);
+      }
+    }
+  }
+
   return errors;
+}
+
+export function getCatalogDiagnostics(): string[] {
+  return getCatalogDiagnosticsForAssets({
+    descriptions,
+    metadata,
+    solutionFiles,
+    overviewFiles,
+    testFiles,
+  });
 }
