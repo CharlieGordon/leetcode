@@ -42,6 +42,7 @@ After scaffolding:
 - Fill `problem.md` from the pasted problem statement. Keep the first heading exactly `# <Title>` so catalog tests can verify the description.
 - Fill each `solutions/*.ts` file with an exported function named by `--function-name`.
 - Replace placeholder test cases with shared cases that every registered solution must pass.
+- If the user asks for an empty or placeholder solution, still write normal behavior tests from the problem statement. Do not write unit tests that assert `Not implemented`, `toThrow`, or other stub-only behavior unless the user explicitly asks for that contract.
 - Keep tests iterating over `meta.solutions`, looking up `solutions[solution.id]`, and asserting the implementation exists with a message that names the missing ID.
 
 ## Catalog Rules
@@ -51,3 +52,4 @@ After scaffolding:
 - Do not add unrelated catalog features while adding a problem.
 - Include all registered solutions in the executable registry. Catalog diagnostics only knows a solution exists when `meta.solutions[].id` has a matching `solutions/<id>.ts` file.
 - Prefer focused tests with edge cases from the prompt: empty/minimal inputs when allowed, duplicates or negatives when relevant, boundary sizes if practical, and mutation behavior for in-place problems.
+- Never mock unit tests by asserting placeholder implementation details when the real contract is known. Tests should verify the problem behavior, even if an empty solution currently fails them.

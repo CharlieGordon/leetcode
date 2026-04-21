@@ -81,3 +81,4 @@ describe(meta.title, () => {
 ```
 
 For in-place mutation problems, copy inputs before invoking the solution and assert the mutated copy. For results where order does not matter, normalize before comparing.
+If a problem is intentionally scaffolded with an empty solution, keep the unit tests focused on the real problem outputs from the prompt. Do not replace behavior assertions with `toThrow('Not implemented')` or similar placeholder-only checks unless the user explicitly asks for that contract.

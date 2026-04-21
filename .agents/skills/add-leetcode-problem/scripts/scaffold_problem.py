@@ -169,6 +169,8 @@ import {{ solutions }} from './solutions';
 
 const cases = [
   // TODO: Replace with shared cases from the pasted problem statement.
+  // Assert real problem outputs here, even if the current implementation is an empty stub.
+  // Do not convert these tests into placeholder throw assertions unless the user explicitly asks for that behavior.
 ];
 
 describe(meta.title, () => {{
