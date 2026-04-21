@@ -32,16 +32,6 @@ export function SolutionViewer({
           <div className={styles.brief}>
             <p className={styles.summary}>{selectedSolution.summary}</p>
           </div>
-          {selectedSolution.overviewMarkdown && (
-            <section className={styles.overview} aria-label="AI overview">
-              <h2 className={styles.overviewTitle}>AI Overview</h2>
-              <div className={styles.overviewMarkdown}>
-                {renderMarkdown(selectedSolution.overviewMarkdown, {
-                  codeClassName: styles.markdownCode,
-                })}
-              </div>
-            </section>
-          )}
           <div className={styles.codeFrame}>
             <div className={styles.codeToolbar} aria-hidden="true">
               <span className={styles.codeFileName}>{selectedSolution.id}.ts</span>
@@ -56,6 +46,16 @@ export function SolutionViewer({
               />
             </pre>
           </div>
+          {selectedSolution.overviewMarkdown && (
+            <section className={styles.overview} aria-label="AI overview">
+              <h2 className={styles.overviewTitle}>AI Overview</h2>
+              <div className={styles.overviewMarkdown}>
+                {renderMarkdown(selectedSolution.overviewMarkdown, {
+                  codeClassName: styles.markdownCode,
+                })}
+              </div>
+            </section>
+          )}
         </>
       ) : (
         <p className={styles.emptyState}>No solution source found.</p>

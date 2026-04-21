@@ -51,6 +51,7 @@ describe('SolutionViewer', () => {
 
     expect(withOverview).toContain('AI Overview');
     expect(withOverview).toContain('<h3>Approach</h3>');
+    expect(withOverview.indexOf('iterative.ts')).toBeLessThan(withOverview.indexOf('AI Overview'));
     expect(withoutOverview).not.toContain('AI Overview');
     expect(withoutOverview).not.toContain('<h3>Approach</h3>');
   });

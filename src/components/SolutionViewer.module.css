@@ -25,7 +25,7 @@
 
 .overview {
   padding: 18px 18px 20px;
-  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
   background:
     linear-gradient(90deg, rgba(216, 83, 61, 0.05), transparent 8px),
     rgba(255, 255, 251, 0.76);

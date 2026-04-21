@@ -8,7 +8,7 @@ const meta: ProblemMeta = {
   leetcodeUrl: 'https://leetcode.com/problems/number-of-common-factors/',
   solutions: [
     {
-      id: 'empty',
+      id: 'iterative',
       name: 'Iterative',
       summary: 'Checks every candidate from the larger input down to 1 and counts shared divisors.',
     },
