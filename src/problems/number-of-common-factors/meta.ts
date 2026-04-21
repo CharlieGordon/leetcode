@@ -9,8 +9,8 @@ const meta: ProblemMeta = {
   solutions: [
     {
       id: 'empty',
-      name: 'Empty',
-      summary: 'Throws a Not implemented error until a real approach is added.',
+      name: 'Iterative',
+      summary: 'Checks every candidate from the larger input down to 1 and counts shared divisors.',
     },
   ],
 };
