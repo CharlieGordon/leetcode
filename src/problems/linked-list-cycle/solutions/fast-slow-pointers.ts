@@ -13,17 +13,16 @@ import type { ListNode } from './index';
  */
 
 export function hasCycle(list: ListNode | null): boolean {
-  let head = list;
-  let visited: Set<ListNode> = new Set();
+  let slow: ListNode | null = list;
+  let fast: ListNode | null = list;
 
-  while (head !== null) {
-    if (visited.has(head)) {
+  while (fast && fast.next) {
+    slow = slow!.next;
+    fast = fast?.next.next;
+
+    if (slow === fast) {
       return true;
     }
-
-    visited.add(head);
-
-    head = head.next;
   }
 
   return false;

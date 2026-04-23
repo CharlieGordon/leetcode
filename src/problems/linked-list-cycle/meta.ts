@@ -12,6 +12,11 @@ const meta: ProblemMeta = {
       name: 'Hash Set',
       summary: 'Tracks visited nodes and returns true when the same node is seen again.',
     },
+    {
+      id: 'fast-slow-pointers',
+      name: 'Fast and Slow Pointers',
+      summary: 'Moves two pointers at different speeds and detects a cycle when they meet.',
+    },
   ],
 };
 
