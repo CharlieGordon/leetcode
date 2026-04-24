@@ -86,4 +86,30 @@ describe('solution runner', () => {
     expect(onLine).toHaveBeenCalledWith({ kind: 'log', values: ['done'] });
     expect(FakeWorker.instances[0].terminated).toBe(true);
   });
+
+  it('terminates and resolves when the worker sends an error message', async () => {
+    vi.useFakeTimers();
+    FakeWorker.instances = [];
+    const onLine = vi.fn();
+
+    const runPromise = runCompiledScriptWithWorker({
+      code: 'throw new Error("bad input")',
+      WorkerConstructor: FakeWorker as unknown as typeof Worker,
+      timeoutMs: 1000,
+      onLine,
+    });
+
+    FakeWorker.instances[0].emit({ type: 'error', message: 'Error: bad input' });
+
+    await runPromise;
+
+    expect(onLine).toHaveBeenCalledWith({
+      kind: 'exception',
+      message: 'Error: bad input',
+    });
+    expect(FakeWorker.instances[0].terminated).toBe(true);
+    expect(vi.getTimerCount()).toBe(0);
+
+    vi.useRealTimers();
+  });
 });

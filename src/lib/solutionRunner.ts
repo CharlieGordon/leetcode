@@ -130,6 +130,9 @@ export function runCompiledScriptWithWorker({
 
       if (line) {
         onLine(line);
+        if (event.data.type === 'error') {
+          finish();
+        }
         return;
       }
 
