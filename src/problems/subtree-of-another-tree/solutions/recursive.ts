@@ -32,7 +32,7 @@ export function isSubtree(root: TreeNode | null, subRoot: TreeNode | null): bool
     return true
   }
 
-  if(!root || !subRoot) {
+  if(!root) {
     return false
   }
 
