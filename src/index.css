@@ -36,6 +36,8 @@
   --sidebar-motion-ease: cubic-bezier(0.19, 1, 0.22, 1);
   --serif:
     "Charter", "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --mono:
+    "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   color: var(--ink);
   background: var(--paper);
@@ -76,8 +78,7 @@ a {
 
 code,
 pre {
-  font-family:
-    "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: var(--mono);
 }
 
 .token.comment,

@@ -73,21 +73,54 @@
 
 .editor {
   width: 100%;
+  background: #10140f;
+  color: #f4f7ed;
+  scrollbar-color: #5c655c #10140f;
+  font-family: var(--mono);
+}
+
+.editor :global(.cm-editor) {
   min-height: 438px;
-  resize: vertical;
-  padding: 20px;
-  border: 0;
-  border-radius: 0;
-  outline: none;
   background: #10140f;
   color: #f4f7ed;
   font: 0.92rem/1.7 var(--mono);
-  scrollbar-color: #5c655c #10140f;
-  white-space: pre;
 }
 
-.editor:focus {
+.editor :global(.cm-focused) {
+  outline: none;
   box-shadow: inset 0 0 0 2px rgba(157, 182, 201, 0.45);
+}
+
+.editor :global(.cm-scroller) {
+  min-height: 438px;
+  padding: 20px;
+  font-family: var(--mono);
+  line-height: 1.7;
+  scrollbar-color: #5c655c #10140f;
+}
+
+.editor :global(.cm-content) {
+  padding: 0;
+  caret-color: #f4f7ed;
+  font-weight: 500;
+}
+
+.editor :global(.cm-line) {
+  padding: 0;
+}
+
+.editor :global(.cm-line span) {
+  font-weight: inherit;
+  font-style: normal;
+}
+
+.editor :global(.cm-selectionBackground),
+.editor :global(.cm-focused .cm-selectionBackground) {
+  background: rgba(157, 182, 201, 0.28);
+}
+
+.editor :global(.cm-gutters) {
+  display: none;
 }
 
 .terminal {
@@ -100,7 +133,7 @@
   border-bottom: 1px solid #273026;
   color: #9fb1a0;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .terminalOutput {
@@ -121,7 +154,8 @@
 }
 
 @media (max-width: 1180px) {
-  .editor {
+  .editor :global(.cm-editor),
+  .editor :global(.cm-scroller) {
     min-height: 360px;
   }
 }
@@ -141,8 +175,12 @@
     flex: 1;
   }
 
-  .editor {
+  .editor :global(.cm-editor),
+  .editor :global(.cm-scroller) {
     min-height: 320px;
+  }
+
+  .editor :global(.cm-scroller) {
     padding: 14px;
   }
 }
