@@ -1,16 +1,18 @@
-import { highlightTypeScript } from '../lib/highlight';
 import { renderMarkdown } from '../lib/markdown';
 import type { SolutionSource } from '../types';
+import { EditableSolutionRunner } from './EditableSolutionRunner';
 import { Tabs } from './ui/Tabs';
 import styles from './SolutionViewer.module.css';
 
 type SolutionViewerProps = {
+  problemSlug: string;
   solutions: SolutionSource[];
   selectedSolutionId: string;
   onSolutionSelect: (solutionId: string) => void;
 };
 
 export function SolutionViewer({
+  problemSlug,
   solutions,
   selectedSolutionId,
   onSolutionSelect,
@@ -32,20 +34,7 @@ export function SolutionViewer({
           <div className={styles.brief}>
             <p className={styles.summary}>{selectedSolution.summary}</p>
           </div>
-          <div className={styles.codeFrame}>
-            <div className={styles.codeToolbar} aria-hidden="true">
-              <span className={styles.codeFileName}>{selectedSolution.id}.ts</span>
-              <span className={styles.codeLanguage}>TypeScript</span>
-            </div>
-            <pre className={styles.codeViewer}>
-              <code
-                className="language-typescript"
-                dangerouslySetInnerHTML={{
-                  __html: highlightTypeScript(selectedSolution.source),
-                }}
-              />
-            </pre>
-          </div>
+          <EditableSolutionRunner problemSlug={problemSlug} solution={selectedSolution} />
           {selectedSolution.overviewMarkdown && (
             <section className={styles.overview} aria-label="AI overview">
               <h2 className={styles.overviewTitle}>AI Overview</h2>

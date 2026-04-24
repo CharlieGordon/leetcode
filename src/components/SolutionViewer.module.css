@@ -132,50 +132,6 @@
   white-space: pre;
 }
 
-.codeFrame {
-  background: #10140f;
-}
-
-.codeToolbar {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 36px;
-  padding: 8px 18px;
-  border-bottom: 1px solid #273026;
-  color: #8d998b;
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.codeFileName {
-  margin-right: auto;
-  color: #9ba79a;
-}
-
-.codeLanguage {
-  color: #9db6c9;
-}
-
-.codeViewer {
-  min-height: 438px;
-  overflow: auto;
-  margin: 0;
-  padding: 20px;
-  border-radius: 0;
-  background: #10140f;
-  color: #f4f7ed;
-  line-height: 1.7;
-  scrollbar-color: #5c655c #10140f;
-  white-space: pre;
-}
-
-.codeViewer code {
-  display: block;
-  min-width: max-content;
-}
-
 .emptyState {
   min-height: 100vh;
   padding: 42px;
@@ -186,16 +142,5 @@
 @media (max-width: 1180px) {
   .panel {
     position: static;
-  }
-
-  .codeViewer {
-    min-height: 360px;
-  }
-}
-
-@media (max-width: 560px) {
-  .codeViewer {
-    min-height: 320px;
-    padding: 14px;
   }
 }

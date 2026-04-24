@@ -40,6 +40,7 @@ export function ProblemDetail({
       <div className={styles.contentGrid}>
         <ProblemDescription description={problem.description} />
         <SolutionViewer
+          problemSlug={problem.slug}
           solutions={problem.solutionSources}
           selectedSolutionId={selectedSolutionId}
           onSolutionSelect={onSolutionSelect}
