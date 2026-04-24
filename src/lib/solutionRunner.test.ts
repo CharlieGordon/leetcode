@@ -26,6 +26,10 @@ class FakeWorker {
   }
 }
 
+function createFakeWorker(): Worker {
+  return new FakeWorker() as unknown as Worker;
+}
+
 describe('solution runner', () => {
   it('normalizes known worker messages into terminal lines', () => {
     expect(normalizeWorkerMessage({ type: 'console', method: 'log', values: ['hello'] })).toEqual({
@@ -46,7 +50,7 @@ describe('solution runner', () => {
     const onLine = vi.fn();
     const runPromise = runCompiledScriptWithWorker({
       code: 'while (true) {}',
-      WorkerConstructor: FakeWorker as unknown as typeof Worker,
+      createWorker: createFakeWorker,
       timeoutMs: 25,
       onLine,
     });
@@ -73,7 +77,7 @@ describe('solution runner', () => {
 
     const runPromise = runCompiledScriptWithWorker({
       code: 'console.log("done")',
-      WorkerConstructor: FakeWorker as unknown as typeof Worker,
+      createWorker: createFakeWorker,
       timeoutMs: 1000,
       onLine,
     });
@@ -94,7 +98,7 @@ describe('solution runner', () => {
 
     const runPromise = runCompiledScriptWithWorker({
       code: 'throw new Error("bad input")',
-      WorkerConstructor: FakeWorker as unknown as typeof Worker,
+      createWorker: createFakeWorker,
       timeoutMs: 1000,
       onLine,
     });

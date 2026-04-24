@@ -24,7 +24,7 @@ type TransformApi = Pick<typeof esbuild, 'initialize' | 'transform'>;
 
 type RunCompiledScriptOptions = {
   code: string;
-  WorkerConstructor?: typeof Worker;
+  createWorker?: () => Worker;
   timeoutMs?: number;
   onLine: (line: TerminalLine) => void;
 };
@@ -93,16 +93,20 @@ export async function transformSolutionScript(
   return result.code;
 }
 
+export function createSolutionWorker(): Worker {
+  return new Worker(new URL('./solutionExecution.worker.ts', import.meta.url), {
+    type: 'module',
+  });
+}
+
 export function runCompiledScriptWithWorker({
   code,
-  WorkerConstructor = Worker,
+  createWorker = createSolutionWorker,
   timeoutMs = DEFAULT_TIMEOUT_MS,
   onLine,
 }: RunCompiledScriptOptions): Promise<void> {
   return new Promise((resolve) => {
-    const worker = new WorkerConstructor(new URL('./solutionExecution.worker.ts', import.meta.url), {
-      type: 'module',
-    });
+    const worker = createWorker();
 
     let finished = false;
 
