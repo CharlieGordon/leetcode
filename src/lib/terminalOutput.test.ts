@@ -35,6 +35,7 @@ describe('terminal output formatting', () => {
     expect(formatThrownValue({ name: 'Error', message: 'No solution found' })).toBe(
       'Error: No solution found',
     );
+    expect(formatThrownValue({ message: 'boom' })).toBe('Error: boom');
     expect(formatThrownValue('bad input')).toBe('bad input');
   });
 });
