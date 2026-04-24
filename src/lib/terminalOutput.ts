@@ -9,6 +9,10 @@ export type TerminalLine =
     };
 
 export function formatConsoleValue(value: unknown): string {
+  return formatConsoleValueWithSeen(value, new WeakSet<object>());
+}
+
+function formatConsoleValueWithSeen(value: unknown, seen: WeakSet<object>): string {
   if (typeof value === 'string') {
     return value;
   }
@@ -22,11 +26,18 @@ export function formatConsoleValue(value: unknown): string {
   }
 
   if (Array.isArray(value)) {
-    return `[${value.map(formatConsoleValue).join(', ')}]`;
+    if (seen.has(value)) {
+      return '[Circular]';
+    }
+
+    seen.add(value);
+    const formatted = `[${value.map((item) => formatConsoleValueWithSeen(item, seen)).join(', ')}]`;
+    seen.delete(value);
+    return formatted;
   }
 
   try {
-    return JSON.stringify(value);
+    return JSON.stringify(value) ?? String(value);
   } catch {
     return String(value);
   }

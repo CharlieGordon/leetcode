@@ -22,6 +22,22 @@ describe('terminal output formatting', () => {
     expect(formatConsoleValue(value)).toBe('[object Object]');
   });
 
+  it('formats circular arrays as readable text', () => {
+    const value: unknown[] = [];
+    value.push(value);
+
+    expect(formatConsoleValue(value)).toBe('[[Circular]]');
+  });
+
+  it('falls back when JSON.stringify returns undefined', () => {
+    function example() {
+      return 1;
+    }
+
+    expect(formatConsoleValue(example)).toBe(String(example));
+    expect(formatConsoleValue(Symbol('token'))).toBe('Symbol(token)');
+  });
+
   it('formats console lines without adding result labels', () => {
     expect(
       terminalLineToText({
