@@ -1,0 +1,148 @@
+.runner {
+  display: grid;
+  background: #10140f;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 8px 18px;
+  border-bottom: 1px solid #273026;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.runButton,
+.resetButton {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid #41523e;
+  border-radius: 6px;
+  background: #e8eee1;
+  color: #11160f;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.resetButton {
+  background: transparent;
+  color: #d7dfcf;
+}
+
+.runButton:disabled,
+.resetButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.draftStatus {
+  color: #9fb1a0;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.editorLabel {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  border-bottom: 1px solid #273026;
+  color: #8d998b;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.codeFileName {
+  margin-right: auto;
+  color: #9ba79a;
+}
+
+.codeLanguage {
+  color: #9db6c9;
+}
+
+.editor {
+  width: 100%;
+  min-height: 438px;
+  resize: vertical;
+  padding: 20px;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: #10140f;
+  color: #f4f7ed;
+  font: 0.92rem/1.7 var(--mono);
+  scrollbar-color: #5c655c #10140f;
+  white-space: pre;
+}
+
+.editor:focus {
+  box-shadow: inset 0 0 0 2px rgba(157, 182, 201, 0.45);
+}
+
+.terminal {
+  border-top: 1px solid #273026;
+  background: #0c100c;
+}
+
+.terminalToolbar {
+  padding: 8px 18px;
+  border-bottom: 1px solid #273026;
+  color: #9fb1a0;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.terminalOutput {
+  display: grid;
+  min-height: 126px;
+  max-height: 260px;
+  overflow: auto;
+  margin: 0;
+  padding: 14px 18px;
+  color: #f4f7ed;
+  font: 0.88rem/1.6 var(--mono);
+  scrollbar-color: #5c655c #0c100c;
+}
+
+.terminalOutput code {
+  display: block;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 1180px) {
+  .editor {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 560px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .runButton,
+  .resetButton {
+    flex: 1;
+  }
+
+  .editor {
+    min-height: 320px;
+    padding: 14px;
+  }
+}
