@@ -88,7 +88,6 @@
 
 .editor :global(.cm-focused) {
   outline: none;
-  box-shadow: inset 0 0 0 2px rgba(157, 182, 201, 0.45);
 }
 
 .editor :global(.cm-scroller) {
@@ -129,11 +128,34 @@
 }
 
 .terminalToolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px 18px;
   border-bottom: 1px solid #273026;
   color: #9fb1a0;
   font-size: 0.72rem;
   font-weight: 700;
+}
+
+.closeTerminalButton {
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid #41523e;
+  border-radius: 6px;
+  background: transparent;
+  color: #d7dfcf;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.closeTerminalButton:hover,
+.closeTerminalButton:focus-visible {
+  border-color: #8fa58a;
+  color: #f4f7ed;
 }
 
 .terminalOutput {

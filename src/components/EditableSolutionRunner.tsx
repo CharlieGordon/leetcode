@@ -70,12 +70,14 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
   const [source, setSource] = useState(resolvedSource.source);
   const [hasDraft, setHasDraft] = useState(resolvedSource.hasDraft);
   const [terminalLines, setTerminalLines] = useState<TerminalLine[]>([]);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     setSource(resolvedSource.source);
     setHasDraft(resolvedSource.hasDraft);
     setTerminalLines([]);
+    setIsTerminalOpen(false);
   }, [resolvedSource.source, resolvedSource.hasDraft]);
 
   const updateSource = useCallback((nextSource: string): void => {
@@ -89,9 +91,11 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
     setSource(solution.source);
     setHasDraft(false);
     setTerminalLines([]);
+    setIsTerminalOpen(false);
   }
 
   async function runCurrentSource(): Promise<void> {
+    setIsTerminalOpen(true);
     setIsRunning(true);
     setTerminalLines([]);
 
@@ -142,14 +146,21 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
         onChange={updateSource}
       />
 
-      <section className={styles.terminal} aria-label="Terminal output">
-        <div className={styles.terminalToolbar}>Terminal</div>
-        <pre className={styles.terminalOutput}>
-          {terminalLines.map((line, index) => (
-            <code key={`${line.kind}-${index}`}>{terminalLineToText(line)}</code>
-          ))}
-        </pre>
-      </section>
+      {isTerminalOpen && (
+        <section className={styles.terminal} aria-label="Terminal output">
+          <div className={styles.terminalToolbar}>
+            <span>Terminal</span>
+            <button className={styles.closeTerminalButton} type="button" onClick={() => setIsTerminalOpen(false)}>
+              Close
+            </button>
+          </div>
+          <pre className={styles.terminalOutput}>
+            {terminalLines.map((line, index) => (
+              <code key={`${line.kind}-${index}`}>{terminalLineToText(line)}</code>
+            ))}
+          </pre>
+        </section>
+      )}
     </div>
   );
 }

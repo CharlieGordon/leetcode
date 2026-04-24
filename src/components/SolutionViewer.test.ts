@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { SolutionViewer } from './SolutionViewer';
 
 describe('SolutionViewer', () => {
-  it('renders runner controls, terminal, and AI Overview in the accepted order', () => {
+  it('renders runner controls with the terminal hidden by default', () => {
     const markup = renderToStaticMarkup(
       createElement(SolutionViewer, {
         problemSlug: 'demo',
@@ -24,11 +24,10 @@ describe('SolutionViewer', () => {
 
     expect(markup).toContain('Run');
     expect(markup).toContain('Reset draft');
-    expect(markup).toContain('Terminal');
+    expect(markup).not.toContain('Terminal');
     expect(markup).toContain('AI Overview');
     expect(markup.indexOf('Run')).toBeLessThan(markup.indexOf('iterative.ts'));
-    expect(markup.indexOf('iterative.ts')).toBeLessThan(markup.indexOf('Terminal'));
-    expect(markup.indexOf('Terminal')).toBeLessThan(markup.indexOf('AI Overview'));
+    expect(markup.indexOf('iterative.ts')).toBeLessThan(markup.indexOf('AI Overview'));
   });
 
   it('renders an AI Overview section only for solutions with overview markdown', () => {
@@ -80,7 +79,7 @@ describe('SolutionViewer', () => {
 
     expect(withOverview).toContain('AI Overview');
     expect(withOverview).toContain('<h3>Approach</h3>');
-    expect(withOverview.indexOf('Terminal')).toBeLessThan(withOverview.indexOf('AI Overview'));
+    expect(withOverview).not.toContain('Terminal');
     expect(withoutOverview).not.toContain('AI Overview');
     expect(withoutOverview).not.toContain('<h3>Approach</h3>');
   });
