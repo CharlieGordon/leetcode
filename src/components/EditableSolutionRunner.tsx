@@ -56,11 +56,13 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
     setIsRunning(true);
     setTerminalLines([]);
 
-    await runSolutionScript(source, (line) => {
-      setTerminalLines((currentLines) => [...currentLines, line]);
-    });
-
-    setIsRunning(false);
+    try {
+      await runSolutionScript(source, (line) => {
+        setTerminalLines((currentLines) => [...currentLines, line]);
+      });
+    } finally {
+      setIsRunning(false);
+    }
   }
 
   return (
