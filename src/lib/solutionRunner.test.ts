@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+import { toCloneSafeValues } from './solutionExecution.worker';
 import { normalizeWorkerMessage, runCompiledScriptWithWorker } from './solutionRunner';
 
 class FakeWorker {
@@ -31,6 +32,45 @@ function createFakeWorker(): Worker {
 }
 
 describe('solution runner', () => {
+  it('converts unsafe console values into clone-safe values', () => {
+    const cyclic: { label: string; self?: unknown } = { label: 'cycle' };
+    cyclic.self = cyclic;
+
+    const cloneSafeValues = toCloneSafeValues([
+      'text',
+      123,
+      true,
+      undefined,
+      null,
+      10n,
+      Symbol('token'),
+      () => 'ignored',
+      [() => 'nested'],
+      { ok: true, callback: () => 'ignored', cyclic },
+    ]);
+
+    expect(() => structuredClone(cloneSafeValues)).not.toThrow();
+    expect(cloneSafeValues).toEqual([
+      'text',
+      123,
+      true,
+      undefined,
+      null,
+      '10',
+      'Symbol(token)',
+      '[Function anonymous]',
+      ['[Function anonymous]'],
+      {
+        ok: true,
+        callback: '[Function callback]',
+        cyclic: {
+          label: 'cycle',
+          self: '[Circular]',
+        },
+      },
+    ]);
+  });
+
   it('normalizes known worker messages into terminal lines', () => {
     expect(normalizeWorkerMessage({ type: 'console', method: 'log', values: ['hello'] })).toEqual({
       kind: 'log',
