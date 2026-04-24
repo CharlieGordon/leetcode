@@ -23,6 +23,20 @@ const difficultyClassByDifficulty: Record<Difficulty, string> = {
   Hard: styles.difficultyHard,
 };
 
+const TAG_PREVIEW_CHARACTER_LIMIT = 36;
+
+function getVisibleTags(tags: string[]) {
+  return tags.reduce<string[]>((visibleTags, tag) => {
+    const preview = [...visibleTags, tag].join(', ');
+
+    if (visibleTags.length > 0 && preview.length > TAG_PREVIEW_CHARACTER_LIMIT) {
+      return visibleTags;
+    }
+
+    return [...visibleTags, tag];
+  }, []);
+}
+
 export function ProblemSidebar({
   problems,
   totalProblemCount,
@@ -90,27 +104,37 @@ export function ProblemSidebar({
           </div>
 
           <nav className={styles.list} aria-label="Problems">
-            {problems.map((problem) => (
-              <button
-                key={problem.slug}
-                className={classNames(
-                  styles.listItem,
-                  difficultyClassByDifficulty[problem.difficulty],
-                  problem.slug === selectedSlug && styles.active,
-                )}
-                type="button"
-                tabIndex={isCollapsed ? -1 : undefined}
-                onClick={() => onProblemSelect(problem.slug)}
-              >
-                <span className={styles.problemTitle}>{problem.title}</span>
-                <span className={styles.problemMeta} aria-label={`${problem.difficulty}, ${problem.tags.join(', ')}`}>
-                  <span className={styles.difficultyDot} aria-hidden="true" />
-                  <span>{problem.difficulty}</span>
-                  <span aria-hidden="true">/</span>
-                  <span>{problem.tags.join(', ')}</span>
-                </span>
-              </button>
-            ))}
+            {problems.map((problem) => {
+              const visibleTags = getVisibleTags(problem.tags);
+              const hiddenTagCount = problem.tags.length - visibleTags.length;
+
+              return (
+                <button
+                  key={problem.slug}
+                  className={classNames(
+                    styles.listItem,
+                    difficultyClassByDifficulty[problem.difficulty],
+                    problem.slug === selectedSlug && styles.active,
+                  )}
+                  type="button"
+                  tabIndex={isCollapsed ? -1 : undefined}
+                  onClick={() => onProblemSelect(problem.slug)}
+                >
+                  <span className={styles.problemTitle}>{problem.title}</span>
+                  <span className={styles.problemMeta} aria-label={`${problem.difficulty}, ${problem.tags.join(', ')}`}>
+                    <span className={styles.difficultyDot} aria-hidden="true" />
+                    <span>{problem.difficulty}</span>
+                    {visibleTags.length > 0 && <span aria-hidden="true">/</span>}
+                    <span className={styles.tagPreview}>{visibleTags.join(', ')}</span>
+                    {hiddenTagCount > 0 && (
+                      <span className={styles.tagCount} aria-hidden="true">
+                        +{hiddenTagCount}
+                      </span>
+                    )}
+                  </span>
+                </button>
+              );
+            })}
           </nav>
         </div>
       </div>

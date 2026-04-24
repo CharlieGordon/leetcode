@@ -268,15 +268,36 @@
 
 .problemMeta {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
   align-items: center;
+  min-width: 0;
   color: var(--muted);
   font-size: 0.72rem;
   line-height: 1.35;
 }
 
+.tagPreview {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tagCount {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border: 1px solid color-mix(in srgb, var(--difficulty-color, var(--accent)) 38%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--difficulty-color, var(--accent)) 10%, transparent);
+  color: var(--ink);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 .difficultyDot {
+  flex: 0 0 auto;
   width: 7px;
   height: 7px;
   border: 1px solid rgba(255, 255, 251, 0.68);
