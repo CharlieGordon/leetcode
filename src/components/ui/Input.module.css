@@ -1,6 +1,6 @@
 .stack {
   display: grid;
-  gap: 8px;
+  gap: var(--space-3);
 }
 
 .label {
@@ -15,14 +15,14 @@
   padding: 0 13px;
   border: 1px solid var(--rule-strong);
   border-radius: var(--radius);
-  background: rgba(255, 255, 251, 0.72);
+  background: var(--surface-translucent);
   color: var(--ink);
   outline: none;
   transition:
-    background 140ms ease,
-    border-color 140ms ease,
-    box-shadow 140ms ease,
-    transform 140ms ease;
+    background var(--motion-fast),
+    border-color var(--motion-fast),
+    box-shadow var(--motion-fast),
+    transform var(--motion-fast);
 }
 
 .input::placeholder {
@@ -30,13 +30,13 @@
 }
 
 .input:hover {
-  box-shadow: 3px 3px 0 rgba(20, 22, 16, 0.12);
+  box-shadow: var(--shadow-interactive);
 }
 
 .input:focus,
 .input:active {
   border-color: var(--rule-strong);
   background: var(--surface);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: var(--shadow-interactive-strong);
   transform: translate(-1px, -1px);
 }
