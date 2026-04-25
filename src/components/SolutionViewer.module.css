@@ -1,6 +1,6 @@
 .panel {
   position: sticky;
-  top: 28px;
+  top: 20px;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--rule-strong);

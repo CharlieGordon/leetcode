@@ -1,6 +1,3 @@
-/**
- * Definition for a binary tree node.
- */
 export class TreeNode {
   val: number;
   left: TreeNode | null;

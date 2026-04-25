@@ -7,6 +7,8 @@ import { clearSolutionDraft, resolveSolutionSource, saveSolutionDraft } from '..
 import { runSolutionScript } from '../lib/solutionRunner';
 import { terminalLineToText, type TerminalLine } from '../lib/terminalOutput';
 import type { SolutionSource } from '../types';
+import { IconButton } from './ui/IconButton';
+import { CloseIcon, PlayIcon, ResetIcon, SpinnerIcon, TerminalIcon } from './ui/icons';
 import styles from './EditableSolutionRunner.module.css';
 
 const codeEditorTheme = EditorView.theme(
@@ -108,18 +110,44 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
     }
   }
 
+  const runLabel = isRunning ? 'Running solution' : 'Run solution';
+  const terminalToggleLabel = isTerminalOpen ? 'Hide terminal' : 'Show terminal';
+  const draftStatusLabel = hasDraft ? 'Browser draft' : 'Repo source';
+
   return (
     <div className={styles.runner}>
       <div className={styles.toolbar}>
         <div className={styles.actions}>
-          <button className={styles.runButton} type="button" onClick={runCurrentSource} disabled={isRunning}>
-            {isRunning ? 'Running...' : 'Run'}
-          </button>
-          <button className={styles.resetButton} type="button" onClick={resetDraft} disabled={!hasDraft || isRunning}>
-            Reset draft
-          </button>
+          <IconButton
+            className={styles.runButton}
+            onClick={runCurrentSource}
+            disabled={isRunning}
+            label={runLabel}
+          >
+            {isRunning ? <SpinnerIcon /> : <PlayIcon />}
+          </IconButton>
+          <IconButton
+            className={styles.terminalToggleButton}
+            onClick={() => setIsTerminalOpen((currentValue) => !currentValue)}
+            aria-pressed={isTerminalOpen}
+            label={terminalToggleLabel}
+          >
+            <TerminalIcon className={styles.terminalIcon} />
+          </IconButton>
+          {hasDraft && (
+            <IconButton
+              className={styles.resetButton}
+              onClick={resetDraft}
+              disabled={isRunning}
+              label="Reset browser draft"
+            >
+              <ResetIcon />
+            </IconButton>
+          )}
         </div>
-        <span className={styles.draftStatus}>{hasDraft ? 'Browser draft' : 'Repo source'}</span>
+        <span className={styles.draftStatus} data-has-draft={hasDraft}>
+          {draftStatusLabel}
+        </span>
       </div>
 
       <label className={styles.editorLabel} htmlFor={`solution-editor-${problemSlug}-${solution.id}`}>
@@ -150,9 +178,13 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
         <section className={styles.terminal} aria-label="Terminal output">
           <div className={styles.terminalToolbar}>
             <span>Terminal</span>
-            <button className={styles.closeTerminalButton} type="button" onClick={() => setIsTerminalOpen(false)}>
-              Close
-            </button>
+            <IconButton
+              className={styles.closeTerminalButton}
+              onClick={() => setIsTerminalOpen(false)}
+              label="Close terminal"
+            >
+              <CloseIcon />
+            </IconButton>
           </div>
           <pre className={styles.terminalOutput}>
             {terminalLines.map((line, index) => (
