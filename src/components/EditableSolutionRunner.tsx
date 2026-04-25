@@ -150,10 +150,11 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
         </span>
       </div>
 
-      <label className={styles.editorLabel} htmlFor={`solution-editor-${problemSlug}-${solution.id}`}>
+      {/* <label className={styles.editorLabel} htmlFor={`solution-editor-${problemSlug}-${solution.id}`}>
         <span className={styles.codeFileName}>{solution.id}.ts</span>
         <span className={styles.codeLanguage}>TypeScript</span>
-      </label>
+      </label> */}
+
       <CodeMirror
         id={`solution-editor-${problemSlug}-${solution.id}`}
         className={styles.editor}
@@ -179,7 +180,6 @@ export function EditableSolutionRunner({ problemSlug, solution }: EditableSoluti
           <div className={styles.terminalToolbar}>
             <span>Terminal</span>
             <IconButton
-              className={styles.closeTerminalButton}
               onClick={() => setIsTerminalOpen(false)}
               label="Close terminal"
             >

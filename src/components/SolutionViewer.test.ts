@@ -35,10 +35,8 @@ describe('SolutionViewer', () => {
     expect(markup).not.toContain('aria-label="Reset browser draft"');
     expect(markup).not.toContain('aria-label="Terminal output"');
     expect(markup).toContain('AI Overview');
-    expect(markup.indexOf('Run solution')).toBeLessThan(markup.indexOf('iterative.ts'));
     expect(markup.indexOf('Run solution')).toBeLessThan(markup.indexOf('Show terminal'));
-    expect(markup.indexOf('Show terminal')).toBeLessThan(markup.indexOf('iterative.ts'));
-    expect(markup.indexOf('iterative.ts')).toBeLessThan(markup.indexOf('AI Overview'));
+    expect(markup.indexOf('Show terminal')).toBeLessThan(markup.indexOf('AI Overview'));
   });
 
   it('shows reset after the terminal toggle only when a browser draft exists', () => {
@@ -57,7 +55,7 @@ describe('SolutionViewer', () => {
     expect(markup).toContain('Browser draft');
     expect(markup.indexOf('Run solution')).toBeLessThan(markup.indexOf('Show terminal'));
     expect(markup.indexOf('Show terminal')).toBeLessThan(markup.indexOf('Reset browser draft'));
-    expect(markup.indexOf('Reset browser draft')).toBeLessThan(markup.indexOf('iterative.ts'));
+    expect(markup.indexOf('Reset browser draft')).toBeLessThan(markup.indexOf('AI Overview'));
   });
 
   it('renders an AI Overview section only for solutions with overview markdown', () => {
