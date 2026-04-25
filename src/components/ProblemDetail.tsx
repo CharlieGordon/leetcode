@@ -38,13 +38,15 @@ export function ProblemDetail({
       </header>
 
       <div className={styles.contentGrid}>
-        <ProblemDescription description={problem.description} />
-        <SolutionViewer
-          problemSlug={problem.slug}
-          solutions={problem.solutionSources}
-          selectedSolutionId={selectedSolutionId}
-          onSolutionSelect={onSolutionSelect}
-        />
+        <div className={styles.contentGridInner}>
+          <ProblemDescription description={problem.description} />
+          <SolutionViewer
+            problemSlug={problem.slug}
+            solutions={problem.solutionSources}
+            selectedSolutionId={selectedSolutionId}
+            onSolutionSelect={onSolutionSelect}
+          />
+        </div>
       </div>
     </section>
   );
