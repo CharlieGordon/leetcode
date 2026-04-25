@@ -155,40 +155,6 @@ pre {
   font-family: var(--mono);
 }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #899384;
-}
-
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex {
-  color: #b8e2c7;
-}
-
-.token.number,
-.token.boolean {
-  color: #efc37d;
-}
-
-.token.keyword,
-.token.operator {
-  color: #a9d9ff;
-  font-weight: 700;
-}
-
-.token.function,
-.token.class-name {
-  color: #f0e29b;
-}
-
-.token.punctuation {
-  color: #d9ded1;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
