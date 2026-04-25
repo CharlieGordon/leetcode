@@ -13,7 +13,7 @@
   display: grid;
   padding: 16px 18px;
   border-bottom: 1px solid var(--rule);
-  background: rgba(255, 255, 251, 0.72);
+  background: var(--surface-translucent);
 }
 
 .summary {
