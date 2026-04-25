@@ -99,12 +99,12 @@
   overflow: auto;
   margin: 16px 0;
   padding: 38px 16px 16px;
-  border: 1px solid #242a22;
+  border: 1px solid var(--code-border);
   border-radius: var(--radius);
-  background: #10140f;
-  color: #f4f7ed;
+  background: var(--code-bg);
+  color: var(--code-text);
   line-height: 1.7;
-  scrollbar-color: #5c655c #10140f;
+  scrollbar-color: var(--code-scrollbar) var(--code-bg);
 }
 
 .markdownCode::before {
@@ -113,8 +113,8 @@
   left: 0;
   right: 0;
   padding: 7px 12px;
-  border-bottom: 1px solid #293128;
-  color: #9fb1a0;
+  border-bottom: 1px solid var(--code-border-soft);
+  color: var(--code-muted);
   font-size: 0.68rem;
   font-weight: 900;
   text-transform: uppercase;

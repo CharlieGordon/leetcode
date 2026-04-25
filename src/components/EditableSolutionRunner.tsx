@@ -11,34 +11,46 @@ import { IconButton } from './ui/IconButton';
 import { CloseIcon, PlayIcon, ResetIcon, SpinnerIcon, TerminalIcon } from './ui/icons';
 import styles from './EditableSolutionRunner.module.css';
 
+const editorColors = {
+  background: 'var(--code-bg)',
+  text: 'var(--code-text-soft)',
+  selection: 'var(--code-selection)',
+  keyword: 'var(--syntax-keyword)',
+  function: 'var(--syntax-function)',
+  number: 'var(--syntax-number)',
+  punctuation: 'var(--syntax-punctuation)',
+  string: 'var(--syntax-string)',
+  comment: 'var(--syntax-comment)',
+} as const;
+
 const codeEditorTheme = EditorView.theme(
   {
     '&': {
-      backgroundColor: '#10140f',
-      color: '#eef3e8',
+      backgroundColor: editorColors.background,
+      color: editorColors.text,
     },
     '.cm-content': {
-      caretColor: '#eef3e8',
+      caretColor: editorColors.text,
     },
     '.cm-cursor': {
-      borderLeftColor: '#eef3e8',
+      borderLeftColor: editorColors.text,
     },
     '.cm-selectionBackground, &.cm-focused .cm-selectionBackground': {
-      backgroundColor: 'rgba(159, 214, 255, 0.24)',
+      backgroundColor: editorColors.selection,
     },
   },
   { dark: true },
 );
 
 const codeHighlightStyle = HighlightStyle.define([
-  { tag: [tags.keyword, tags.controlKeyword, tags.definitionKeyword], color: '#9fd6ff' },
-  { tag: [tags.function(tags.variableName), tags.definition(tags.variableName)], color: '#f2e58f' },
-  { tag: [tags.number, tags.bool], color: '#f0c46f' },
-  { tag: [tags.operator, tags.compareOperator, tags.arithmeticOperator, tags.definitionOperator], color: '#9fd6ff' },
-  { tag: [tags.typeName, tags.variableName, tags.propertyName], color: '#eef3e8' },
-  { tag: tags.punctuation, color: '#dfe7da' },
-  { tag: tags.string, color: '#a7d79b' },
-  { tag: tags.comment, color: '#7f8b7c', fontStyle: 'italic' },
+  { tag: [tags.keyword, tags.controlKeyword, tags.definitionKeyword], color: editorColors.keyword },
+  { tag: [tags.function(tags.variableName), tags.definition(tags.variableName)], color: editorColors.function },
+  { tag: [tags.number, tags.bool], color: editorColors.number },
+  { tag: [tags.operator, tags.compareOperator, tags.arithmeticOperator, tags.definitionOperator], color: editorColors.keyword },
+  { tag: [tags.typeName, tags.variableName, tags.propertyName], color: editorColors.text },
+  { tag: tags.punctuation, color: editorColors.punctuation },
+  { tag: tags.string, color: editorColors.string },
+  { tag: tags.comment, color: editorColors.comment, fontStyle: 'italic' },
 ]);
 
 const editorExtensions = [

@@ -3,7 +3,7 @@
   border-top: 1px solid #263126;
   background:
     linear-gradient(180deg, rgba(255, 255, 251, 0.035), transparent 76px),
-    #0f140f;
+    var(--code-bg-panel);
 }
 
 .toolbar {
@@ -14,7 +14,7 @@
   min-height: 50px;
   padding: 9px 18px;
   border-bottom: 1px solid #283428;
-  background: #111810;
+  background: var(--code-bg-toolbar);
 }
 
 .actions {
@@ -24,7 +24,7 @@
   padding: 3px;
   border: 1px solid #2b3a2b;
   border-radius: 8px;
-  background: #0b100b;
+  background: var(--code-bg-control);
 }
 
 .runButton {
@@ -75,10 +75,10 @@
   align-items: center;
   min-height: 26px;
   padding: 0 10px;
-  border: 1px solid #334333;
+  border: 1px solid var(--code-border-muted);
   border-radius: 999px;
   background: #0c120c;
-  color: #9fb1a0;
+  color: var(--code-muted);
   font-size: 0.72rem;
   font-weight: 700;
   white-space: nowrap;
@@ -98,7 +98,7 @@
 }
 
 .draftStatus[data-has-draft="true"]::before {
-  background: #f0c46f;
+  background: var(--syntax-number);
   box-shadow: 0 0 0 3px rgba(240, 196, 111, 0.13);
 }
 
@@ -112,7 +112,7 @@
   background:
     linear-gradient(90deg, rgba(45, 102, 165, 0.12), transparent 36%),
     #0c120c;
-  color: #8d998b;
+  color: var(--code-muted-soft);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -133,9 +133,9 @@
 
 .editor {
   width: 100%;
-  background: #10140f;
-  color: #f4f7ed;
-  scrollbar-color: #5c655c #10140f;
+  background: var(--code-bg);
+  color: var(--code-text);
+  scrollbar-color: var(--code-scrollbar) var(--code-bg);
   font-family: var(--mono);
   overflow: auto;
   max-height: calc(100vh - 300px);
@@ -145,8 +145,8 @@
   min-height: 438px;
   background:
     linear-gradient(90deg, rgba(255, 255, 251, 0.025), transparent 42px),
-    #10140f;
-  color: #f4f7ed;
+    var(--code-bg);
+  color: var(--code-text);
   font: 0.92rem/1.7 var(--mono);
 }
 
@@ -155,12 +155,12 @@
   padding: 22px 24px 28px;
   font-family: var(--mono);
   line-height: 1.7;
-  scrollbar-color: #5c655c #10140f;
+  scrollbar-color: var(--code-scrollbar) var(--code-bg);
 }
 
 .editor :global(.cm-content) {
   padding: 0;
-  caret-color: #f4f7ed;
+  caret-color: var(--code-text);
   font-weight: 500;
 }
 
@@ -175,7 +175,7 @@
 
 .editor :global(.cm-selectionBackground),
 .editor :global(.cm-focused .cm-selectionBackground) {
-  background: rgba(157, 182, 201, 0.28);
+  background: var(--code-selection);
 }
 
 .editor :global(.cm-gutters) {
@@ -186,7 +186,7 @@
   border-top: 1px solid #273026;
   background:
     linear-gradient(180deg, rgba(216, 83, 61, 0.045), transparent 54px),
-    #070b08;
+    var(--code-bg-deep);
 }
 
 .terminalToolbar {
@@ -197,7 +197,7 @@
   min-height: 42px;
   padding: 6px 12px 6px 18px;
   border-bottom: 1px solid #273026;
-  color: #9fb1a0;
+  color: var(--code-muted);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -209,9 +209,9 @@
   overflow: auto;
   margin: 0;
   padding: 16px 18px 18px;
-  color: #f4f7ed;
+  color: var(--code-text);
   font: 0.88rem/1.6 var(--mono);
-  scrollbar-color: #5c655c #0c100c;
+  scrollbar-color: var(--code-scrollbar) #0c100c;
 }
 
 .terminalOutput code {
