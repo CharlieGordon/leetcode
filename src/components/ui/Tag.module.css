@@ -2,10 +2,10 @@
   display: inline-flex;
   align-items: center;
   min-height: 26px;
-  padding: 3px 8px;
+  padding: 3px var(--space-3);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
-  background: rgba(255, 255, 251, 0.58);
+  background: var(--surface-subtle);
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 600;

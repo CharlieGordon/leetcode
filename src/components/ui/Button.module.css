@@ -29,24 +29,24 @@
   color: var(--ink);
   transform: translate3d(0, 0, 0);
   transition:
-    background 140ms ease,
-    box-shadow 140ms ease,
-    color 140ms ease,
+    background var(--motion-fast),
+    box-shadow var(--motion-fast),
+    color var(--motion-fast),
     min-height var(--sidebar-motion-duration) var(--sidebar-motion-ease),
     padding var(--sidebar-motion-duration) var(--sidebar-motion-ease),
-    transform 140ms ease,
+    transform var(--motion-fast),
     width var(--sidebar-motion-duration) var(--sidebar-motion-ease);
 }
 
 .sidebarToggle:hover {
   background: var(--accent-soft);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: var(--shadow-interactive-strong);
   color: var(--ink);
   transform: translate3d(-2px, -2px, 0);
 }
 
 .sidebarToggle:active {
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: var(--shadow-interactive-strong);
   transform: translate3d(-1px, -1px, 0);
 }
 
@@ -77,8 +77,8 @@
   font-size: 0.8rem;
   font-weight: 700;
   transition:
-    background 140ms ease,
-    color 140ms ease;
+    background var(--motion-fast),
+    color var(--motion-fast);
 }
 
 .tab:hover {
@@ -108,9 +108,9 @@
   text-underline-offset: 4px;
   white-space: nowrap;
   transition:
-    color 140ms ease,
-    text-decoration-color 140ms ease,
-    text-underline-offset 140ms ease;
+    color var(--motion-fast),
+    text-decoration-color var(--motion-fast),
+    text-underline-offset var(--motion-fast);
 }
 
 .external:hover {

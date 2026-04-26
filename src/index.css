@@ -5,35 +5,109 @@
 }
 
 :root {
-  --paper: #f4f8f1;
-  --paper-warm: #fbfcf5;
-  --paper-quiet: #e8f0e7;
-  --surface: #fffffb;
-  --ink: #141610;
-  --ink-soft: #343a31;
-  --muted: #626c61;
-  --muted-light: #9aa397;
-  --rule: #ced9cf;
-  --rule-strong: #141610;
-  --accent: #0b7457;
+  /* Base palette */
+  --color-paper-50: #fffffb;
+  --color-paper-100: #fbfcf5;
+  --color-paper-200: #f4f8f1;
+  --color-paper-300: #e8f0e7;
+  --color-ink-900: #141610;
+  --color-ink-700: #343a31;
+  --color-ink-500: #626c61;
+  --color-ink-300: #9aa397;
+  --color-rule-200: #ced9cf;
+  --color-accent-green: #0b7457;
+  --color-accent-red: #c84634;
+  --color-accent-red-quiet: rgba(200, 70, 52, 0.13);
+  --color-accent-blue: #2d66a5;
+  --color-accent-amber: #c98516;
+
+  /* Semantic surfaces and text */
+  --paper: var(--color-paper-200);
+  --paper-warm: var(--color-paper-100);
+  --paper-quiet: var(--color-paper-300);
+  --surface: var(--color-paper-50);
+  --surface-translucent: rgba(255, 255, 251, 0.72);
+  --surface-raised: rgba(255, 255, 251, 0.78);
+  --surface-subtle: rgba(255, 255, 251, 0.58);
+  --ink: var(--color-ink-900);
+  --ink-soft: var(--color-ink-700);
+  --muted: var(--color-ink-500);
+  --muted-light: var(--color-ink-300);
+
+  /* Borders, focus, and shadows */
+  --rule: var(--color-rule-200);
+  --rule-strong: var(--color-ink-900);
+  --focus-ring: rgba(11, 116, 87, 0.24);
+  --focus-ring-code: rgba(159, 214, 255, 0.18);
+  --shadow-hard: 7px 7px 0 rgba(20, 22, 16, 0.12);
+  --shadow-interactive: 3px 3px 0 rgba(20, 22, 16, 0.12);
+  --shadow-interactive-strong: 3px 3px 0 var(--ink);
+  --shadow-logo: 4px 4px 0 rgba(20, 22, 16, 0.09);
+  --shadow-sidebar: 8px 0 24px rgba(20, 22, 16, 0.045);
+
+  /* Accents and states */
+  --accent: var(--color-accent-green);
   --accent-soft: #d8eee4;
-  --accent-hot: #c84634;
+  --accent-hot: var(--color-accent-red);
   --accent-hot-soft: #f4d2ca;
-  --accent-hot-quiet: rgba(200, 70, 52, 0.13);
-  --accent-blue: #2d66a5;
-  --accent-amber: #c98516;
-  --easy: #0b7457;
+  --accent-hot-quiet: var(--color-accent-red-quiet);
+  --accent-blue: var(--color-accent-blue);
+  --accent-amber: var(--color-accent-amber);
+  --easy: var(--color-accent-green);
   --medium: #a96b0c;
   --hard: #be463b;
-  --focus-ring: rgba(11, 116, 87, 0.24);
+
+  /* Code, editor, and terminal */
+  --code-bg: #10140f;
+  --code-bg-deep: #070b08;
+  --code-bg-panel: #0f140f;
+  --code-bg-toolbar: #111810;
+  --code-bg-control: #0b100b;
+  --code-border: #242a22;
+  --code-border-soft: #293128;
+  --code-border-muted: #334333;
+  --code-text: #f4f7ed;
+  --code-text-soft: #eef3e8;
+  --code-muted: #9fb1a0;
+  --code-muted-soft: #8d998b;
+  --code-scrollbar: #5c655c;
+  --code-selection: rgba(159, 214, 255, 0.24);
+  --syntax-comment: #7f8b7c;
+  --syntax-string: #a7d79b;
+  --syntax-number: #f0c46f;
+  --syntax-keyword: #9fd6ff;
+  --syntax-function: #f2e58f;
+  --syntax-punctuation: #dfe7da;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 18px;
+  --space-9: 20px;
+  --space-10: 22px;
+  --space-11: 24px;
+  --space-12: 28px;
+  --space-13: 30px;
+  --space-14: 32px;
+
+  /* Shape and motion */
   --radius: 6px;
-  --shadow-hard: 7px 7px 0 rgba(20, 22, 16, 0.12);
+  --radius-control: 7px;
+  --radius-pill: 999px;
+  --motion-fast: 140ms ease;
   --sidebar-expanded-width: 348px;
   --sidebar-collapsed-width: 86px;
   --sidebar-width: var(--sidebar-expanded-width);
   --sidebar-motion-duration: 520ms;
   --sidebar-motion-short: 170ms;
   --sidebar-motion-ease: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Fonts */
   --serif:
     "Charter", "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --mono:
@@ -79,40 +153,6 @@ a {
 code,
 pre {
   font-family: var(--mono);
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #899384;
-}
-
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex {
-  color: #b8e2c7;
-}
-
-.token.number,
-.token.boolean {
-  color: #efc37d;
-}
-
-.token.keyword,
-.token.operator {
-  color: #a9d9ff;
-  font-weight: 700;
-}
-
-.token.function,
-.token.class-name {
-  color: #f0e29b;
-}
-
-.token.punctuation {
-  color: #d9ded1;
 }
 
 @media (prefers-reduced-motion: reduce) {

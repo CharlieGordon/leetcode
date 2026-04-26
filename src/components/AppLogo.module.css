@@ -7,7 +7,7 @@
   color: var(--ink);
   background:
     linear-gradient(135deg, var(--surface), var(--accent-soft));
-  box-shadow: 4px 4px 0 rgba(20, 22, 16, 0.09);
+  box-shadow: var(--shadow-logo);
   transition:
     height var(--sidebar-motion-duration) var(--sidebar-motion-ease),
     transform var(--sidebar-motion-duration) var(--sidebar-motion-ease),
